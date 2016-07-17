@@ -32,7 +32,7 @@ RUN \
  PROFILE=TLMR3220 \
  PACKAGES=" \
   -ppp -kmod-ppp -kmod-pppox -kmod-pppoe -ppp-mod-pppoe \
-  blkid block-mount kmod-fs-ext4 kmod-usb-storage \
+  block-mount kmod-fs-ext4 kmod-usb-storage \
   luci \
   kmod-usbip kmod-usbip-server kmod-usbip-client \
   "
