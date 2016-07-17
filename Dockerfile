@@ -2,11 +2,8 @@ FROM ubuntu:xenial
 MAINTAINER github.com/bkil
 
 ENV DEBIAN_FRONTEND noninteractive
-ENV DIR "OpenWrt-ImageBuilder-15.05.1-ar71xx-generic.Linux-x86_64"
-ENV TARBALL "$DIR.tar.bz2"
-ENV TMP /tmp
 
-WORKDIR "$TMP"
+WORKDIR /tmp
 
 RUN \
  apt-get update && \
@@ -18,28 +15,12 @@ RUN \
  gawk git ccache gettext libssl-dev xsltproc wget && \
  rm -rf /var/lib/apt/lists/*
 
+ENV TARBALL "OpenWrt-ImageBuilder-15.05.1-ar71xx-generic.Linux-x86_64.tar.bz2"
+
 RUN \
  wget \
   -nv \
   https://downloads.openwrt.org/chaos_calmer/15.05.1/ar71xx/generic/$TARBALL && \
  tar -xjf $TARBALL && \
- rm $TARBALL
-
-WORKDIR "$TMP/$DIR"
-
-RUN \
- make image \
- PROFILE=TLMR3220 \
- PACKAGES=" \
-  -ppp -kmod-ppp -kmod-pppox -kmod-pppoe -ppp-mod-pppoe \
-  block-mount kmod-fs-ext4 kmod-usb-storage \
-  luci \
-  kmod-usbip kmod-usbip-server kmod-usbip-client \
-  "
-# You don't need to delete *ppp* if you don't need luci before extroot.
-# usbip is also optional
-
-ENTRYPOINT \
- cp -avt \
-  /host \
-  bin/*/*-squashfs-*.bin
+ rm $TARBALL && \
+ mv *ImageBuilder* image-builder
