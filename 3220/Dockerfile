@@ -1,4 +1,4 @@
-FROM bkil:openwrt-image-builder-base
+FROM bkil:openwrt-image-generator-base
 MAINTAINER github.com/bkil
 
 WORKDIR /tmp/image-builder
