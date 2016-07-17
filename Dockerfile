@@ -32,11 +32,12 @@ RUN \
  PROFILE=TLMR3220 \
  PACKAGES=" \
   -ppp -kmod-ppp -kmod-pppox -kmod-pppoe -ppp-mod-pppoe \
+  blkid block-mount kmod-fs-ext4 kmod-usb-storage \
   luci \
-  block-mount kmod-usb-storage kmod-fs-ext4 \
   kmod-usbip kmod-usbip-server kmod-usbip-client \
   "
 # You don't need to delete *ppp* if you don't need luci before extroot.
+# usbip is also optional
 
 ENTRYPOINT \
  cp -avt \
