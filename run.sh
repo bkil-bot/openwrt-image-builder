@@ -1,8 +1,11 @@
 #!/bin/sh -e
 
-mkdir -p data
-
-docker run -v data:/data -i -t \
+docker run -v $PWD:/host -i -t \
  --net=host \
- --name oib \
- bkil/openwrt-image-builder
+ bkil/openwrt-image-generator
+
+echo interactive: \
+docker run -v $PWD:/host -i -t \
+ --entrypoint /bin/bash \
+ --net=host \
+ bkil/openwrt-image-generator
