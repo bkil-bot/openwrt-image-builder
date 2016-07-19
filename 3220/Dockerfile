@@ -10,7 +10,6 @@ RUN \
   -ppp -kmod-ppp -kmod-pppox -kmod-pppoe -ppp-mod-pppoe \
   block-mount kmod-fs-ext4 kmod-usb-storage \
   luci \
-  kmod-usbip kmod-usbip-server kmod-usbip-client \
   "
 # You don't need to delete *ppp* if you don't need luci before extroot.
 # usbip is also optional
